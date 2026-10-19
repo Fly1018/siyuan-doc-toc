@@ -14,6 +14,33 @@ export interface FlatHeading {
 
 const INDENT = "    ";
 
+function nodeTitle(node: OutlineNode): string {
+    const name = (node as any).name;
+    if (typeof name === "string" && name.trim()) return name;
+    const content = (node as any).content;
+    return String(content == null ? "" : content);
+}
+
+function isHeadingNode(node: OutlineNode): boolean {
+    if (!node) return false;
+    if (/^h[1-6]$/i.test(String(node.subType || ""))) return true;
+    return (node as any).nodeType === "NodeHeading";
+}
+
+/**
+ * The outline API nests top-level headings under `blocks` (not `children`).
+ * Nested headings use `children`. Accept both shapes.
+ */
+function childNodes(node: OutlineNode): OutlineNode[] {
+    if (Array.isArray(node.children) && node.children.length > 0) {
+        return node.children;
+    }
+    if (Array.isArray(node.blocks)) {
+        return node.blocks.filter(isHeadingNode);
+    }
+    return [];
+}
+
 export function clampLevel(value: unknown, fallback = 6): number {
     const level = Math.round(Number(value));
     if (!Number.isFinite(level)) {
@@ -121,9 +148,10 @@ function buildList(
             continue;
         }
         const indent = INDENT.repeat(Math.min(indentLevel, 5));
-        lines.push(`${indent}- ((${node.id} "${anchorText(node.name, options.untitled)}"))`);
-        if (Array.isArray(node.children) && node.children.length > 0) {
-            lines.push(...buildList(node.children, indentLevel + 1, depth + 1, options));
+        lines.push(`${indent}- ((${node.id} "${anchorText(nodeTitle(node), options.untitled)}"))`);
+        const children = childNodes(node);
+        if (children.length > 0) {
+            lines.push(...buildList(children, indentLevel + 1, depth + 1, options));
         }
     }
     return lines;
@@ -152,10 +180,10 @@ export function flattenOutline(
             }
             result.push({
                 id: node.id,
-                name: cleanInline(node.name, ""),
+                name: cleanInline(nodeTitle(node), ""),
                 depth,
             });
-            walk(node.children || [], depth + 1);
+            walk(childNodes(node), depth + 1);
         }
     };
     walk(nodes, fallbackDepth);
@@ -170,8 +198,8 @@ export function signatureOf(nodes: OutlineNode[]): string {
                 continue;
             }
             const depth = headingDepth(node, nextDepth);
-            parts.push(`${depth}:${node.id || ""}:${node.name || ""}`);
-            walk(node.children || [], depth + 1);
+            parts.push(`${depth}:${node.id || ""}:${nodeTitle(node)}`);
+            walk(childNodes(node), depth + 1);
         }
     };
     walk(nodes, 1);

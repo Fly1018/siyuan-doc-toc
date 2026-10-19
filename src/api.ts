@@ -2,10 +2,14 @@ import { fetchSyncPost } from "siyuan";
 
 export interface OutlineNode {
     id: string;
-    name: string;
+    name?: string;
+    content?: string;
     depth?: number;
     subType?: string;
+    type?: string;
+    nodeType?: string;
     children?: OutlineNode[];
+    blocks?: OutlineNode[];
 }
 
 export interface BlockRow {
