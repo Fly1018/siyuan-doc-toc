@@ -1,0 +1,5 @@
+/* The dialog component ships its own scoped styles. This rule keeps a stable
+   index.css entry point for SiYuan's plugin loader. */
+.doc-toc-dialog {
+    min-height: 0;
+}

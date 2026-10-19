@@ -1,0 +1,35 @@
+{
+  "name": "siyuan-doc-toc",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Generate or refresh a clickable table of contents at the top of the current SiYuan document.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fly1018/siyuan-doc-toc.git"
+  },
+  "homepage": "https://github.com/Fly1018/siyuan-doc-toc",
+  "author": "Fly1018",
+  "license": "MIT",
+  "packageManager": "pnpm@11.4.0",
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "scripts": {
+    "dev": "vite build --watch",
+    "build": "node ./scripts/clean.js && vite build",
+    "check": "tsc --noEmit -p tsconfig.json && svelte-check --tsconfig ./tsconfig.json",
+    "update-version": "node ./scripts/update_version.js"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^7.3.0",
+    "@tsconfig/svelte": "^5.0.8",
+    "@types/node": "^26.4.0",
+    "sass": "^1.103.1",
+    "siyuan": "1.2.5",
+    "svelte": "^5.57.0",
+    "svelte-check": "^4.7.6",
+    "typescript": "^6.0.3",
+    "vite": "^8.2.2",
+    "vite-plugin-static-copy": "^4.1.1"
+  }
+}
