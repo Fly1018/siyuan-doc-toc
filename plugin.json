@@ -2,7 +2,7 @@
   "name": "siyuan-doc-toc",
   "author": "Fly1018",
   "url": "https://github.com/Fly1018/siyuan-doc-toc",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "minAppVersion": "3.7.0",
   "backends": [
     "windows",
@@ -20,15 +20,15 @@
   ],
   "displayName": {
     "default": "Document TOC",
-    "zh-CN": "文档目录生成器",
-    "zh_CN": "文档目录生成器",
+    "zh-CN": "文内目录",
+    "zh_CN": "文内目录",
     "en": "Document TOC",
     "en_US": "Document TOC"
   },
   "description": {
     "default": "Generate or refresh a clickable table of contents at the top of the current document.",
-    "zh-CN": "在当前文档开头生成或刷新可点击跳转的文档目录。",
-    "zh_CN": "在当前文档开头生成或刷新可点击跳转的文档目录。",
+    "zh-CN": "在当前文档开头生成或刷新可点击跳转的文内目录。",
+    "zh_CN": "在当前文档开头生成或刷新可点击跳转的文内目录。",
     "en": "Generate or refresh a clickable table of contents at the top of the current document.",
     "en_US": "Generate or refresh a clickable table of contents at the top of the current document."
   },

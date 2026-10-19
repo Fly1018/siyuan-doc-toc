@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.2
+
+- Renamed the Chinese display name from “文档目录生成器” to “文内目录” and updated the Chinese UI copy.
+
 ## 1.0.1
 
 - Fixed the TOC only listing top-level headings. The outline API nests child headings under `blocks` (not `children`); the generator now accepts both shapes.

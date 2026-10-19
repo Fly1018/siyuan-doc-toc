@@ -1,6 +1,6 @@
 {
   "name": "siyuan-doc-toc",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "type": "module",
   "description": "Generate or refresh a clickable table of contents at the top of the current SiYuan document.",
   "repository": {
